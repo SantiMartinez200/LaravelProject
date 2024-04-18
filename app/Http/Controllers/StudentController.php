@@ -12,8 +12,8 @@ class StudentController extends Controller
 {
     public function index() : View
     {
-        return view('products.index', [
-            'products' => Student::latest()->paginate(3)
+        return view('students.index', [
+            'students' => Student::latest()->paginate(5)
         ]);
     }
 
@@ -22,7 +22,7 @@ class StudentController extends Controller
      */
     public function create() : View
     {
-        return view('products.create');
+        return view('students.create');
     }
 
     /**
@@ -31,47 +31,47 @@ class StudentController extends Controller
     public function store(StoreStudentRequest $request) : RedirectResponse
     {
         Student::create($request->all());
-        return redirect()->route('products.index')
-                ->withSuccess('New product is added successfully.');
+        return redirect()->route('students.index')
+                ->withSuccess('New student was added successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Student $product) : View
+    public function show(Student $student) : View
     {
-        return view('products.show', [
-            'product' => $product
+        return view('students.show', [
+            'student' => $student
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Student $product) : View
+    public function edit(Student $student) : View
     {
-        return view('products.edit', [
-            'product' => $product
+        return view('students.edit', [
+            'student' => $student
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateStudentRequest $request, Student $product) : RedirectResponse
+    public function update(UpdateStudentRequest $request, Student $student) : RedirectResponse
     {
-        $product->update($request->all());
+        $student->update($request->all());
         return redirect()->back()
-                ->withSuccess('Product is updated successfully.');
+                ->withSuccess('Student was updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Student $product) : RedirectResponse
+    public function destroy(Student $student) : RedirectResponse
     {
-        $product->delete();
-        return redirect()->route('products.index')
-                ->withSuccess('Product is deleted successfully.');
+        $student->delete();
+        return redirect()->route('students.index')
+                ->withSuccess('Student was deleted successfully.');
     }
 }
