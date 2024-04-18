@@ -19,5 +19,19 @@ use App\Http\Controllers\StudentController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('products', ProductController::class);
+//Route::resource('products', ProductController::class);
 Route::resource('students', StudentController::class);
+
+
+
+//18-4-2024 test POSTman////////////////////////////////////////////
+Route::get('details', [ProductController::class, 'details']);
+
+Route::GET('insertProductView', function () {
+  return view('form');
+});
+
+Route::POST('insertarProduct', [ProductController::class,'insertProduct']);
+
+Route::Get('getProduct/{id}',[ProductController::class,'getProduct']);
+/////////////////////////////////////////////////////////////////////
