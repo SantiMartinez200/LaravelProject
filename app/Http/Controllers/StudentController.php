@@ -74,4 +74,10 @@ class StudentController extends Controller
         return redirect()->route('students.index')
                 ->withSuccess('Student was deleted successfully.');
     }
+
+    public function find($id){
+      $student = Student::find($id);
+      $cant = $student->assists;
+      return view('students.assists', compact('cant'));
+    }
 }

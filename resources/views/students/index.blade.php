@@ -44,7 +44,11 @@
 
                                     <a href="{{ route('students.edit', $student->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>   
 
+                                    <a href="{{route('StudentAssist', $student->id)}}" class="btn btn-success btn-sm"><i class="bi bi-eye"></i> Assists</a>
+
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this student?');"><i class="bi bi-trash"></i> Delete</button>
+
+                                    
                                 </form>
                             </td>
                         </tr>

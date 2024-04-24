@@ -1,5 +1,0 @@
-Modelo
-Controllador
-Vistas
-Migracion
-Rutas               //students
