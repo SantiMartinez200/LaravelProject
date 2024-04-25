@@ -1,49 +1,46 @@
 @extends('students.layouts')
 
 @section('content')
-
 <div class="row justify-content-center mt-3">
-    <div class="col-md-8">
+    <div class="col-md-12">
 
-        <div class="card">
-            <div class="card-header">
-                <div class="float-start">
-                    Student attendance information
-                </div>
-                <div class="float-end">
-                    <a href="{{ route('students.index') }}" class="btn btn-primary btn-sm">&larr; Back</a>
-                </div>
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success" role="alert">
+                {{ $message }}
             </div>
+        @endif
+        <div class="card">
+            <div class="card-header">{{$student->name}} {{$student->last_name}}</div>
             <div class="card-body">
-            @foreach ($cant as $eachAssist)
-                    <div class="row">
-                        <label for="id" class="col-md-4 col-form-label text-md-end text-start"><strong>Attendance ID:</strong></label>
-                        <div class="col-md-6" style="line-height: 35px;">
-                            {{ $eachAssist->id }}
-                        </div>
-                    </div>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">Student ID</th>
+                        <th scope="col">Assist Date</th>
+                        <th scope="col">Updated at</th>
+                        <th scope="col">Condition</th>
+                        <th scope="col">Action</th>
 
-                    <div class="row">
-                        <label for="student_id" class="col-md-4 col-form-label text-md-end text-start"><strong>Student ID:</strong></label>
-                        <div class="col-md-6" style="line-height: 35px;">
-                            {{ $eachAssist->student_id }}
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <label for="assist_date" class="col-md-4 col-form-label text-md-end text-start"><strong>Assist Date:</strong></label>
-                        <div class="col-md-6" style="line-height: 35px;">
-                            {{ $eachAssist->assist_date }}
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <label for="modified_at" class="col-md-4 col-form-label text-md-end text-start"><strong>Modified At:</strong></label>
-                        <div class="col-md-6" style="line-height: 35px;">
-                            {{ $eachAssist->modified_at }}
-                        </div>
-                    </div>
-              @endforeach
+                      </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($cant as $eachStudent)
+                        <tr>
+                            <td>{{ $eachStudent->student_id }}</td>
+                            <td>{{ \Carbon\Carbon::parse($eachStudent->assist_date)->format('j F, Y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($eachStudent->modified_at)->format('j F, Y') }}</td>
+                            <td><a href="StudentCondition" class="btn btn-secondary">Show Condition</a></td>
+                            <td>No Action</td>
+                        </tr>
+                        @empty
+                            <td colspan="6">
+                                <span class="text-danger">
+                                    <strong>No Assists Found!</strong>
+                                </span>
+                            </td>
+                        @endforelse
+                    </tbody>
+                  </table>
             </div>
         </div>
     </div>    

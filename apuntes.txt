@@ -8,3 +8,7 @@ Ej:
         //Debe devolver una collection con métodos para ordenar más facil los datos.
     }
     
+
+Poner ruta del get del boton en el API
+Armar un controlador "API" que va a trabajar todas las funciones API.
+Crear la funcion que calcule 

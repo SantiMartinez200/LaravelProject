@@ -78,6 +78,6 @@ class StudentController extends Controller
     public function find($id){
       $student = Student::find($id);
       $cant = $student->assists;
-      return view('students.assists', compact('cant'));
+      return view('students.assists', compact('cant','student'));
     }
 }

@@ -35,4 +35,6 @@ Route::POST('insertarProduct', [ProductController::class,'insertProduct']);
 
 Route::Get('getProduct/{id}',[ProductController::class,'getProduct']);
 /////////////////////////////////////////////////////////////////////
-Route::get('assist/{id}', [StudentController::class, 'find'])->name("StudentAssist");
+
+
+//Route::get('assist/{id}', [StudentController::class, 'find'])->name("StudentAssist");

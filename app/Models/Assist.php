@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Assist extends Model
 {
+    protected $fillable = [
+      'student_id',
+      'assist_date' => 'date:Y-m-d',
+      'modified_at'
+    ];
   function student_assist(): BelongsTo
   {
     return $this->belongsTo(Student::class);
