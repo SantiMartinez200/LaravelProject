@@ -1,0 +1,10 @@
+25/04/2024
+Probar inyección de dependencias, request personalizados,
+Ej:
+    Crear request personalizados para la asistencia
+    //una vez creado
+    Public Function Info (Assist $assist){
+        dd($assist)
+        //Debe devolver una collection con métodos para ordenar más facil los datos.
+    }
+    

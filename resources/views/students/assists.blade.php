@@ -17,7 +17,7 @@
             <div class="card-body">
             @foreach ($cant as $eachAssist)
                     <div class="row">
-                        <label for="id" class="col-md-4 col-form-label text-md-end text-start"><strong>ID:</strong></label>
+                        <label for="id" class="col-md-4 col-form-label text-md-end text-start"><strong>Attendance ID:</strong></label>
                         <div class="col-md-6" style="line-height: 35px;">
                             {{ $eachAssist->id }}
                         </div>
