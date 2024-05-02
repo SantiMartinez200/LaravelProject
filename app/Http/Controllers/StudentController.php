@@ -7,6 +7,7 @@ use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use Illuminate\Support\Facades\Http;
 
 class StudentController extends Controller
 {
@@ -80,4 +81,4 @@ class StudentController extends Controller
       $cant = $student->assists;
       return view('students.assists', compact('cant','student'));
     }
-}
+  }

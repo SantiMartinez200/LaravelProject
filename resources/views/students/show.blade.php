@@ -4,7 +4,7 @@
 
 <div class="row justify-content-center mt-3">
     <div class="col-md-8">
-
+       
         <div class="card">
             <div class="card-header">
                 <div class="float-start">
@@ -50,7 +50,17 @@
                             {{ $student->group_student }}
                         </div>
                     </div>
-        
+                    <div class="row">
+                        <label for="group_student" class="col-md-4 col-form-label text-md-end text-start"><strong>Assists:</strong></label>
+                        <div class="col-md-6" style="line-height: 35px;">
+                            
+                        </div>
+                    </div><div class="row">
+                        <label for="group_student" class="col-md-4 col-form-label text-md-end text-start"><strong>Condition:</strong></label>
+                        <div class="col-md-6" style="line-height: 35px;">
+                            
+                        </div>
+                    </div>
             </div>
         </div>
     </div>    
