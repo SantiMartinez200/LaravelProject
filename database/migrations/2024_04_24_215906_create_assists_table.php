@@ -13,7 +13,7 @@ return new class extends Migration {
     Schema::create('assists', function (Blueprint $table) {
       $table->id();
       $table->foreignId('student_id');
-      $table->timestamp('assist_date');
+      $table->date('assist_date');
       $table->timestamp('modified_at');
     });
   }

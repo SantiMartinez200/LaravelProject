@@ -14,7 +14,7 @@ class StudentController extends Controller
     public function index() : View
     {
         return view('students.index', [
-            'students' => Student::latest()->paginate(5)
+            'students' => Student::latest()->paginate(10)
         ]);
     }
 

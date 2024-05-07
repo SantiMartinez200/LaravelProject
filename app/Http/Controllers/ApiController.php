@@ -9,6 +9,7 @@ class ApiController extends Controller
 {
   public function studentCondition($id)
   {
+    dd($id);
     $assistCount = DB::table('assists')
                     ->join('students', 'assists.student_id', '=','students.id')
                     ->select(DB::raw('COUNT(*) as assist_count'))
@@ -29,6 +30,7 @@ class ApiController extends Controller
     }else{
       $condition = "insufficient";
     }
-    return response()->json(['UserCondition' => $condition]);
+    return redirect()->route('students.show', ['student'=> $id,'condition' => $condition]);
+    //return redirectresponse()->json(['UserCondition' => $condition]);
     }
 }

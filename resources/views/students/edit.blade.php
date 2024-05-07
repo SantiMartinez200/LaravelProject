@@ -1,6 +1,5 @@
-@extends('students.layouts')
-
-@section('content')
+@extends('layouts.app')
+  @section('content')
 
 <div class="row justify-content-center mt-3">
     <div class="col-md-8">
@@ -10,7 +9,7 @@
                 {{ $message }}
             </div>
         @endif
-
+  <div class="container">
         <div class="card">
             <div class="card-header">
                 <div class="float-start">
@@ -68,7 +67,11 @@
                     <div class="mb-3 row">
                         <label for="group_student" class="col-md-4 col-form-label text-md-end text-start">Group</label>
                         <div class="col-md-6">
-                            <input class="form-control @error('group_student') is-invalid @enderror" id="group_student" name="group_student" value="{{ $student->group_student }}">
+                            <select class="form-control @error('group_student') is-invalid @enderror" id="group_student" name="group_student">
+                            <option selected>{{$student->group_student}}</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                          </select>
                             @if ($errors->has('group_student'))
                                 <span class="text-danger">{{ $errors->first('group_student') }}</span>
                             @endif
@@ -82,7 +85,8 @@
                 </form>
             </div>
         </div>
-    </div>    
+    </div>   
+</div> 
 </div>
     
 @endsection

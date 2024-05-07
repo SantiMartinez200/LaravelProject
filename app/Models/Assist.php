@@ -10,7 +10,7 @@ class Assist extends Model
 {
     protected $fillable = [
       'student_id',
-      'assist_date' => 'date:Y-m-d',
+      'assist_date',
       'modified_at'
     ];
   function student_assist(): BelongsTo

@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AssistController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
-
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,23 +19,33 @@ use App\Http\Controllers\StudentController;
 Route::get('/', function () {
     return view('welcome');
 });
-//Route::resource('products', ProductController::class);
-Route::resource('students', StudentController::class);
 
-
-
-//18-4-2024 test POSTman////////////////////////////////////////////
-Route::get('details', [ProductController::class, 'details']);
-
-Route::GET('insertProductView', function () {
-  return view('form');
+Route::get('/register', function () {
+  return view('register');
 });
 
-Route::POST('insertarProduct', [ProductController::class,'insertProduct']);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::Get('getProduct/{id}',[ProductController::class,'getProduct']);
-/////////////////////////////////////////////////////////////////////
+Route::middleware('auth')->group(function () {
+  Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 
-Route::get('assist/{id}', [StudentController::class, 'find'])->name("StudentAssist");
+  Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
-//Route::get('logRoute')->middleware('log');
+  Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+  Route::resource('students', StudentController::class);
+
+  Route::get('assist/{id}', [StudentController::class, 'find'])->name("StudentAssist");
+
+  Route::get('/sign', [AssistController::class, 'getTodayDate']);
+
+  Route::get('/controlPanel', function () {
+    return view('students.controlPanel');
+  })->name('panel');
+
+  Route::get('signForm', [AssistController::Class,'store'])->name('signForm');
+});
+
+require __DIR__.'/auth.php';

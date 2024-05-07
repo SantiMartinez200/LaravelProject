@@ -1,10 +1,8 @@
-@extends('students.layouts')
-
-@section('content')
-
+@extends('layouts.app')
+  @section('content')
 <div class="row justify-content-center mt-3">
     <div class="col-md-8">
-       
+       <div class="container">
         <div class="card">
             <div class="card-header">
                 <div class="float-start">
@@ -63,6 +61,7 @@
                     </div>
             </div>
         </div>
+</div>
     </div>    
 </div>
     
