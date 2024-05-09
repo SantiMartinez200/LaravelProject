@@ -54,8 +54,7 @@
                                 <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Comenzá a registrar asistencias!</h2>
 
                                 <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                    Primero deberás registrar tu usuario, si sos profesor vas a poder saber la condición de tus alumnos, registrarlos en el sistema e incluso parametrizar la condición de las asistencias! Y si sos alumno, simplemente con logearte y con tu DNI ya estas marcando tu asistencia.
-                                    Se terminaron esos instantes perdidos al tomar asistencia!
+                                    Primero deberás registrar tu usuario, luego podrás añadir a tus estudiantes y llevar un control sobre ellos!
                                 </p>
                             </div>
                         </div>

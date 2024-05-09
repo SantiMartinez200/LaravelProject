@@ -56,10 +56,14 @@
     @endif
       </div>
       @if ($message = Session::get('success'))
-    <div class="alert alert-success mt-2" role="alert">
-      {{ $message }}
-    </div>
-  @endif
+          <div class="alert alert-success mt-2" role="alert">
+          {{ $message }}
+          </div>
+      @elseif($message = Session::get('error'))
+          <div class="alert alert-danger mt-2" role="alert">
+            {{$message}}    
+          </div>
+      @endif
     </div>
 
   </div>
