@@ -39,13 +39,16 @@ Route::middleware('auth')->group(function () {
 
   Route::get('assist/{id}', [StudentController::class, 'find'])->name("StudentAssist");
 
-  Route::get('/sign', [AssistController::class, 'getTodayDate']);
-
   Route::get('/controlPanel', function () {
     return view('students.controlPanel');
   })->name('panel');
 
-  Route::get('signForm', [AssistController::Class,'store'])->name('signForm');
+  Route::get('/sign', function () {
+    return view('students.sign');
+  })->name('signView');
+  
+  Route::POST('findThis', [StudentController::Class,'findThis'])->name('findThis');
+  Route::GET('storeFromButton/{id}', [AssistController::class, 'storeFromButton'])->name('storeFromButton');
 });
 
 require __DIR__.'/auth.php';

@@ -11,7 +11,7 @@
                     </a>
                     <a href="{{ route('students.index') }}">
                     </a>
-                    <a href="{{ route('signForm') }}">
+                    <a href="{{ route('signView') }}">
                     </a>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -25,7 +25,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('signForm')" :active="request()->routeIs('signForm')">
+                    <x-nav-link :href="route('signView')" :active="request()->routeIs('signView')">
                         {{ __('Marcar Asistencia') }}
                     </x-nav-link>
                 </div>
@@ -91,7 +91,7 @@
             <x-responsive-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
                 {{ __('Estudiantes') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('signForm')" :active="request()->routeIs('signForm')">
+            <x-responsive-nav-link :href="route('signView')" :active="request()->routeIs('signView')">
                 {{ __('Marcar Asistencia') }}
             </x-responsive-nav-link>
         </div>

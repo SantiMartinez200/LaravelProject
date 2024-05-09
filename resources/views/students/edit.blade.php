@@ -13,10 +13,10 @@
         <div class="card">
             <div class="card-header">
                 <div class="float-start">
-                    Edit Student
+                    Editar Estudiante
                 </div>
                 <div class="float-end">
-                    <a href="{{ route('students.index') }}" class="btn btn-primary btn-sm">&larr; Back</a>
+                    <a href="{{ route('students.index') }}" class="btn btn-primary btn-sm">&larr; Volver</a>
                 </div>
             </div>
             <div class="card-body">
@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="name" class="col-md-4 col-form-label text-md-end text-start">Name</label>
+                        <label for="name" class="col-md-4 col-form-label text-md-end text-start">Nombre</label>
                         <div class="col-md-6">
                           <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $student->name }}">
                             @if ($errors->has('name'))
@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="last_name" class="col-md-4 col-form-label text-md-end text-start">Last Name</label>
+                        <label for="last_name" class="col-md-4 col-form-label text-md-end text-start">Apellido</label>
                         <div class="col-md-6">
                           <input type="text" class="form-control @error('last_name') is-invalid @enderror" id="last_name" name="last_name" value="{{ $student->last_name }}">
                             @if ($errors->has('last_name'))
@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="birthday" class="col-md-4 col-form-label text-md-end text-start">Birthday</label>
+                        <label for="birthday" class="col-md-4 col-form-label text-md-end text-start">Fecha de Nacimiento</label>
                         <div class="col-md-6">
                           <input type="date" class="form-control @error('birthday') is-invalid @enderror" id="birthday" name="birthday" value="{{ $student->birthday }}">
                             @if ($errors->has('birthday'))
@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="group_student" class="col-md-4 col-form-label text-md-end text-start">Group</label>
+                        <label for="group_student" class="col-md-4 col-form-label text-md-end text-start">Grupo</label>
                         <div class="col-md-6">
                             <select class="form-control @error('group_student') is-invalid @enderror" id="group_student" name="group_student">
                             <option selected>{{$student->group_student}}</option>
@@ -79,7 +79,7 @@
                     </div>
                     
                     <div class="mb-3 row">
-                        <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Update">
+                        <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Actualizar Informacion">
                     </div>
                     
                 </form>

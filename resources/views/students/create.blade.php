@@ -10,7 +10,7 @@
                     Generar un nuevo Estudiante
                 </div>
                 <div class="float-end">
-                    <a href="{{ route('students.index') }}" class="btn btn-primary btn-sm">&larr; Back</a>
+                    <a href="{{ route('students.index') }}" class="btn btn-primary btn-sm">&larr; Volver</a>
                 </div>
             </div>
             <div class="card-body">
@@ -71,7 +71,7 @@
                     </div>
                     
                     <div class="mb-3 row">
-                        <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Add Product">
+                        <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Agregar Estudiante">
                     </div>
                     
                 </form>

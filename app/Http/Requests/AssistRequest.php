@@ -22,8 +22,7 @@ class AssistRequest extends FormRequest
   public function rules(): array
   {
     return [
-      'student_id' => 'required|integer|max:1000|min:0',
-      'assist_date' => 'required|date',
-    ];
+      'dni_student' => 'required|integer|max:99999999|min:0',
+        ];
   }
 }
