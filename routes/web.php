@@ -3,6 +3,7 @@
 use App\Http\Controllers\AssistController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ParamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,15 +40,13 @@ Route::middleware('auth')->group(function () {
 
   Route::get('assist/{id}', [StudentController::class, 'find'])->name("StudentAssist");
 
-  Route::get('/controlPanel', function () {
-    return view('students.controlPanel');
-  })->name('panel');
+  Route::get('panel', [ParamController::class,'getParams'])->name('panel');
 
   Route::get('/sign', function () {
     return view('students.sign');
   })->name('signView');
   
-  Route::POST('findThis', [StudentController::Class,'findThis'])->name('findThis');
+  Route::POST('findThis/{dni}', [StudentController::Class,'findThis'])->name('findThis');
   Route::GET('storeFromButton/{id}', [AssistController::class, 'storeFromButton'])->name('storeFromButton');
 });
 

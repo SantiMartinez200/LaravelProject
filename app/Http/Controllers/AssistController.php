@@ -42,6 +42,7 @@ class AssistController extends Controller
     }else{
       return redirect()->route('signView')->with('error','Este Estudiante ya ha asistido hoy.');
     }
-    
   }
+
+  
 }

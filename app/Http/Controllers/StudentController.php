@@ -7,7 +7,7 @@ use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
-use App\Http\Requests\AssistRequest;
+use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
@@ -87,13 +87,14 @@ class StudentController extends Controller
     return view('students.assists', compact('cant', 'student'));
   }
 
-  public function findThis(AssistRequest $request)
+  public function findThis(Request $request)
   {
     $student = DB::table('students')
                  ->select('*')
-                 ->where('dni_student','like',$request->dni_student)
+                 ->where('dni_student','=',$request->dni_student)
                  ->get();
-    return view('students.sign', compact('student'));
+    return view('students.sign', [
+      'student' => $student
+    ]);
   }
-
 }
