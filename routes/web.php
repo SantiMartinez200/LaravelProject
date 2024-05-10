@@ -4,6 +4,8 @@ use App\Http\Controllers\AssistController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ParamController;
+use App\Http\Controllers\DashboardController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +32,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+  Route::get('/test', [DashboardController::class, 'determineRegularized']);
+
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -40,13 +44,17 @@ Route::middleware('auth')->group(function () {
 
   Route::get('assist/{id}', [StudentController::class, 'find'])->name("StudentAssist");
 
-  Route::get('panel', [ParamController::class,'getParams'])->name('panel');
+  Route::get('params.controlPanel', [ParamController::class,'getParams'])->name('panel');
+  Route::get('params.editControlPanel/{id}', [ParamController::class, 'edit'])->name('edit');
+
+  Route::put('param-update/{id}', [ParamController::class, 'updateParam'])->name("param-update");
 
   Route::get('/sign', function () {
     return view('students.sign');
   })->name('signView');
   
-  Route::POST('findThis/{dni}', [StudentController::Class,'findThis'])->name('findThis');
+  Route::POST('findThis', [StudentController::Class,'findThis'])->name('findThis');
+
   Route::GET('storeFromButton/{id}', [AssistController::class, 'storeFromButton'])->name('storeFromButton');
 });
 
