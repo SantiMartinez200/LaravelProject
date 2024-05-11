@@ -22,9 +22,8 @@ class AssistController extends Controller
 
   public static function ValidateDate($id){
     $todayDate = Carbon::now()->setTimezone('America/Argentina/Buenos_Aires')->format('Y-m-d') . '%';
-    //dd($todayDate);
     $studentDate = DB::table('assists')
-                       ->where('student_id','like',$id,'and','created_at','like',$todayDate)
+                       ->where('created_at', 'LIKE',$todayDate)
                        ->get();
     if ($studentDate->IsEmpty()) {
       return true; //Cargar asistencia.

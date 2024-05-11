@@ -2,27 +2,27 @@
 @section('content')
 <div class="row justify-content-center mt-3">
   <div class="col-md-12">
-    @if ($message = Session::get('success'))
+    <div class="container">
+      @if ($message = Session::get('success'))
     <div class="alert alert-success" role="alert">
-    {{ $message }}
+      {{ $message }}
     </div>
   @endif
-    <div class="container">
       <div class="card">
-        <div class="card-header">Students List</div>
+        <div class="card-header">Listado de estudiantes</div>
         <div class="card-body">
           <a href="{{ route('students.create') }}" class="btn btn-success btn-sm my-2"><i class="bi bi-plus-circle"></i>
-            Add New Student</a>
+            Agregar estudiante</a>
           <table class="table table-striped table-bordered">
             <thead>
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">DNI</th>
-                <th scope="col">Name</th>
-                <th scope="col">Last name</th>
-                <th scope="col">Birthday</th>
-                <th scope="col">Group</th>
-                <th scope="col">Action</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Fecha de Nacimiento</th>
+                <th scope="col">Grupo</th>
+                <th scope="col">Acción</th>
               </tr>
             </thead>
             <tbody>
@@ -49,7 +49,7 @@
               class="bi bi-eye"></i>Asistencias</a>
 
             <button type="submit" class="btn btn-danger btn-sm"
-            onclick="return confirm('¿Estás seguro de eliminar el Estudiante? Sus asistencias también se eliminarán.');"><i
+            onclick="return confirm('¿Estás seguro de eliminar el Estudiante? Deberás eliminar sus asistencias en el Panel General.');"><i
               class="bi bi-trash"></i>Eliminar</button>
           </form>
           </td>

@@ -31,28 +31,48 @@ class DashboardController extends Controller
     //dd($params[0]->regular);
     $distinctStudentsAssists = $this->getStudentsAssists();
     //dd($distinctStudentsAssists[0]->assist_count);
-    $avg = [];
+    $avgRegularized = 0;
     for ($i=0; $i < count($distinctStudentsAssists); $i++) {
       $calculate = (($distinctStudentsAssists[$i]->assist_count)*($params[0]->total_classes)/100)*100;
       if(($calculate >= $params[0]->regular) && ($calculate < $params[0]->promote)){
-        $avg[$i] = $calculate;
+        $avgRegularized = $avgRegularized + 1;
       }
     }
-    return $avg;
+    return $avgRegularized;
   }
 
 
-  public function determinePromote()
+  public function determinePromoted()
   {
-
-
+    $params = $this->getParams();
+    //dd($params[0]->regular);
+    $distinctStudentsAssists = $this->getStudentsAssists();
+    //dd($distinctStudentsAssists[0]->assist_count);
+    $avgPromoted = 0;
+    for ($i = 0; $i < count($distinctStudentsAssists); $i++) {
+      $calculate = (($distinctStudentsAssists[$i]->assist_count) * ($params[0]->total_classes) / 100) * 100;
+      if (($calculate >= $params[0]->promote)) {
+        $avgPromoted = $avgPromoted + 1;
+      }
+    }
+    return $avgPromoted;
   }
 
 
   public function determineAuditor()
   {
-
-
+    $params = $this->getParams();
+    //dd($params[0]->regular);
+    $distinctStudentsAssists = $this->getStudentsAssists();
+    //dd($distinctStudentsAssists[0]->assist_count);
+    $avgAuditor = 0;
+    for ($i = 0; $i < count($distinctStudentsAssists); $i++) {
+      $calculate = (($distinctStudentsAssists[$i]->assist_count) * ($params[0]->total_classes) / 100) * 100;
+      if (($calculate < $params[0]->regular)) {
+        $avgAuditor = $avgAuditor + 1;
+      }
+    }
+    return $avgAuditor;
   }
 
     public static function countAllAssists(){
@@ -61,6 +81,12 @@ class DashboardController extends Controller
     }
 
     public function compactData(){
-      
+        $promoted = $this->determinePromoted();
+        $regularized = $this->determineRegularized();
+        $auditor = $this->determineAuditor();
+        $total_assists = $this->countAllAssists();
+      $results = ['promoted' => $promoted, 'regularized' => $regularized, 'auditor' => $auditor, 'total_assists' => $total_assists];
+
+    return view('dashboard',compact('results'));
     }
 }
