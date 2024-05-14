@@ -5,7 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ParamController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\StudentStatusController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,12 +27,12 @@ Route::get('/register', function () {
   return view('register');
 });
 
-Route::get('/dashboard', function () {
+/*  Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');*/
 
 Route::middleware('auth')->group(function () {
-  Route::get('/dashboard', [DashboardController::class, 'compactData'])->name('dashboard');
+  Route::get('/dashboard', [DashboardController::class, 'compactData'])->name('/dashboard');
 
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 
@@ -56,6 +56,17 @@ Route::middleware('auth')->group(function () {
   Route::POST('findThis', [StudentController::Class,'findThis'])->name('findThis');
 
   Route::GET('storeFromButton/{id}', [AssistController::class, 'storeFromButton'])->name('storeFromButton');
+
+  Route::get('/libres', [StudentStatusController::class,'compactAuditors'])->name('libres');
+  Route::get('/aprobados', [StudentStatusController::class, 'compactPromoted'])->name('aprobados');
+  Route::get('/regulares', [StudentStatusController::class, 'compactRegularized'])->name('regulares');
+  Route::get('/asistencias', [StudentStatusController::class, 'compactAssists'])->name('asistencias');
+
+  /*Route::get();
+
+  Route::get();
+
+  Route::get();*/
 });
 
 require __DIR__.'/auth.php';

@@ -8,8 +8,6 @@ use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use Illuminate\Http\Request;
-
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller

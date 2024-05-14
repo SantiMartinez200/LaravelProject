@@ -1,12 +1,12 @@
 <x-app-layout>
   <div class="py-12">
-
+  
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         @if ($results['promoted'] > 0)
       <div class="float-end mt-4 mr-5 p-3">
-      <a href="{{ route('students.index') }}" class="btn btn-primary btn-sm">Ver promocionados &rArr;</a>
+      <a href="{{ route('aprobados') }}" class="btn btn-primary btn-sm">Ver promocionados &rArr;</a>
       </div>
     @endif
         <div class="p-6 text-gray-900 d-flex align-items-center">
@@ -26,7 +26,7 @@
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         @if ($results['regularized'] > 0)
       <div class="float-end mt-4 mr-5 p-3">
-        <a href="{{ route('students.index') }}" class="btn btn-primary btn-sm">Ver regularizados &rArr;</a>
+        <a href="{{ route('regulares') }}" class="btn btn-primary btn-sm">Ver regularizados &rArr;</a>
       </div>
     @endif
         <div class="p-6 text-gray-900 d-flex align-items-center">
@@ -45,7 +45,7 @@
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         @if ($results['auditor'] > 0)
       <div class="float-end mt-4 mr-5 p-3">
-        <a href="{{ route('students.index') }}" class="btn btn-primary btn-sm">Ver libres &rArr;</a>
+        <a href="{{ route('libres') }}" class="btn btn-primary btn-sm">Ver libres &rArr;</a>
       </div>
     @endif
         <div class="p-6 text-gray-900 d-flex align-items-center">
@@ -63,7 +63,7 @@
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         @if ($results['total_assists'] > 0)
       <div class="float-end mt-4 mr-5 p-3">
-        <a href="{{ route('students.index') }}" class="btn btn-primary btn-sm">Ver asistencias &rArr;</a>
+        <a href="{{ route('asistencias') }}" class="btn btn-primary btn-sm">Ver asistencias &rArr;</a>
       </div>
     @endif
         <div class="p-6 text-gray-900 d-flex align-items-center">

@@ -22,9 +22,6 @@
                       <tr>
                         <th scope="col">Id del registro</th>
                         <th scope="col">Fecha asistida</th>
-                        <th scope="col">Modificada el</th>
-                        <th scope="col">Acción</th>
-
                       </tr>
                     </thead>
                     <tbody>
@@ -32,8 +29,6 @@
                         <tr>
                             <td>{{ $eachStudent->id }}</td>
                             <td>{{ \Carbon\Carbon::parse($eachStudent->created_at)->format('d/m/y H:i') }}</td>
-                            <td>{{ \Carbon\Carbon::parse($eachStudent->updated_at)->format('d/m/y H:i') }}</td>
-                            <td>No Action</td>
                         </tr>
                         @empty
                             <td colspan="6">
