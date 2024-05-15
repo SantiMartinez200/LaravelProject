@@ -1,11 +1,6 @@
 @extends('layouts.app')
   @section('content')
-  <div class="container d-flex mt-2">
-        <form action="" method="">
-          <input type="date">
-          <input type="submit" value="Buscar" class="btn btn-primary">
-        </form>
-  </div>
+  
 <div class="row justify-content-center mt-3">
     <div class="col-md-12">
         @if ($message = Session::get('success'))

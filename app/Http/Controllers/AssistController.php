@@ -20,14 +20,18 @@ class AssistController extends Controller
       ->withSuccess('Se ha marcado la asistencia del alumno');
   }                                                                    -> Not currently used.*/
 
-  public static function ValidateDate($id){
-    $todayDate = Carbon::now()->setTimezone('America/Argentina/Buenos_Aires')->format('Y-m-d') . '%';
+  public static function ValidateDate($id)
+  {
+    $todayDate = Carbon::now()->toDateString();;
+    $todayDate = $todayDate . "%";
     $studentDate = DB::table('assists')
-                       ->where('created_at', 'LIKE',$todayDate)
-                       ->get();
+      ->select()
+      ->where('student_id', '=', $id)
+      ->where('created_at', 'LIKE', $todayDate)
+      ->get();
     if ($studentDate->IsEmpty()) {
       return true; //Cargar asistencia.
-    }else{
+    } else {
       return false; //No cargar la asistencia
     }
   }
@@ -38,10 +42,10 @@ class AssistController extends Controller
     if ($bool == true) {
       $assist = Assist::create(['student_id' => $id]);
       return redirect()->route('signView')->withSuccess('Se ha marcado la asistencia del alumno');
-    }else{
-      return redirect()->route('signView')->with('error','Este Estudiante ya ha asistido hoy.');
+    } else {
+      return redirect()->route('signView')->with('error', 'Este Estudiante ya ha asistido hoy.');
     }
   }
 
-  
+
 }

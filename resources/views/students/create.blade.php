@@ -3,7 +3,11 @@
 
 <div class="row justify-content-center mt-3">
     <div class="col-md-8">
-
+      @if($message = Session::get('status'))
+      <div class="alert alert-danger">
+          {{$message}}
+      </div>
+      @endif
         <div class="card">
             <div class="card-header">
                 <div class="float-start">

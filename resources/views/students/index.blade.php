@@ -27,34 +27,38 @@
             </thead>
             <tbody>
               @forelse ($students as $student)
-        <tr>
-          <th scope="row">{{ $student->id }}</th>
-          <td>{{ $student->dni_student }}</td>
-          <td>{{ $student->name }}</td>
-          <td>{{ $student->last_name }}</td>
-          <td>{{ $student->birthday }}</td>
-          <td>{{ $student->group_student }}</td>
-          <td>
-          <form action="{{ route('students.destroy', $student->id) }}" method="post">
-            @csrf
-            @method('DELETE')
+            <tr>
+            <th scope="row">{{ $student->id }}</th>
+            <td>{{ $student->dni_student }}</td>
+            <td>{{ $student->name }}</td>
+            <td>{{ $student->last_name }}</td>
+            <td><?php
+                $original = $student->birthday;
+                $modified = date('d/m/Y', strtotime($original));
+                echo ($modified);
+            ?></td>
+            <td>{{ $student->group_student }}</td>
+            <td>
+            <form action="{{ route('students.destroy', $student->id) }}" method="post">
+              @csrf
+              @method('DELETE')
 
-            <a href="{{ route('students.show', $student->id) }}" class="btn btn-warning btn-sm m-1"><i
+              <a href="{{ route('students.show', $student->id) }}" class="btn btn-warning btn-sm m-1"><i
               class="bi bi-eye"></i>Ver</a>
 
-            <a href="{{ route('students.edit', $student->id) }}" class="btn btn-primary btn-sm m-1"><i
+              <a href="{{ route('students.edit', $student->id) }}" class="btn btn-primary btn-sm m-1"><i
               class="bi bi-pencil-square"></i>Editar</a>
 
-            <a href="{{route('StudentAssist', $student->id)}}" class="btn btn-success btn-sm m-1"><i
+              <a href="{{route('StudentAssist', $student->id)}}" class="btn btn-success btn-sm m-1"><i
               class="bi bi-eye"></i>Asistencias</a>
 
-            <button type="submit" class="btn btn-danger btn-sm"
-            onclick="return confirm('¿Estás seguro de eliminar el Estudiante? Deberás eliminar sus asistencias en el Panel General.');"><i
+              <button type="submit" class="btn btn-danger btn-sm"
+              onclick="return confirm('¿Estás seguro de eliminar el Estudiante? Deberás eliminar sus asistencias en el Panel General.');"><i
               class="bi bi-trash"></i>Eliminar</button>
-          </form>
-          </td>
+            </form>
+            </td>
 
-        </tr>
+            </tr>
       @empty
     <td colspan="6">
       <span class="text-danger">

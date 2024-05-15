@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\Param;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class StudentController extends Controller
 {
- 
+
   public function index(): View
   {
     return view('students.index', [
@@ -33,9 +35,18 @@ class StudentController extends Controller
    */
   public function store(StoreStudentRequest $request): RedirectResponse
   {
-    Student::create($request->all());
-    return redirect()->route('students.index')
-      ->withSuccess('New student was added successfully.');
+    $val = $request->birthday;
+    $onlyYear = date('Y', strtotime($val));
+    //$thisYear = Carbon::now()->format('Y');
+    $thisYear = date('Y');
+    if(($thisYear - $onlyYear) < 17){
+      return redirect()->route('students.create')
+        ->with('status','La fecha de nacimiento es inválida, solo mayores a 18');
+    }else{
+      Student::create($request->all());
+      return redirect()->route('students.index')
+        ->withSuccess('New student was added successfully.');
+    }
   }
 
   /**
@@ -43,8 +54,32 @@ class StudentController extends Controller
    */
   public function show(Student $student): View
   {
+    //get assists
+    $getAllAssists = DB::table('assists')
+      ->join('students', 'assists.student_id', '=', 'students.id')
+      ->select(DB::raw('count(*) as assist_count'))
+      ->where('students.dni_student', 'LIKE', $student->dni_student)
+      ->get();
+    $val = $getAllAssists[0]->assist_count;
+    //get params and calculate student status
+    $params = Param::all();
+    $calculate = ($val * ($params[0]->total_classes) / 100) * 100;
+    $status = 'undefined';
+    if ($val > 0) {
+      if ($calculate >= $params[0]->promote) {
+        $status = "Promoción";
+      } elseif (($calculate < $params[0]->promote) && ($calculate >= $params[0]->regular)) {
+        $status = "Regular";
+      } elseif (($calculate < $params[0]->regular)) {
+        $status = "Libre";
+      }
+    }else{
+      $status = "Indefinido";
+    }
     return view('students.show', [
-      'student' => $student
+      'student' => $student,
+      'assist' => $val,
+      'status' => $status
     ]);
   }
 
@@ -63,9 +98,19 @@ class StudentController extends Controller
    */
   public function update(UpdateStudentRequest $request, Student $student): RedirectResponse
   {
-    $student->update($request->all());
-    return redirect()->back()
-      ->withSuccess('Student was updated successfully.');
+    $val = $request->birthday;
+    $onlyYear = date('Y', strtotime($val));
+    //$thisYear = Carbon::now()->format('Y');
+    $thisYear = date('Y');
+    if (($thisYear - $onlyYear) < 17) {
+      return redirect()->back()
+        ->with('status', 'La fecha de nacimiento es inválida, solo mayores a 18');
+    } else {
+      $student->update($request->all());
+      return redirect()->back()
+        ->withSuccess('Student was updated successfully.');
+    }
+    
   }
 
   /**
@@ -88,9 +133,9 @@ class StudentController extends Controller
   public function findThis(Request $request)
   {
     $student = DB::table('students')
-                 ->select('*')
-                 ->where('dni_student','=',$request->dni_student)
-                 ->get();
+      ->select('*')
+      ->where('dni_student', '=', $request->dni_student)
+      ->get();
     return view('students.sign', [
       'student' => $student
     ]);
