@@ -62,6 +62,8 @@ Route::middleware('auth')->group(function () {
   Route::get('/regulares', [StudentStatusController::class, 'compactRegularized'])->name('regulares');
   Route::get('/asistencias', [StudentStatusController::class, 'compactAssists'])->name('asistencias');
 
+  Route::get('test', [DashboardController::class, 'birthdays'])->name('test');
+
   /*Route::get();
 
   Route::get();

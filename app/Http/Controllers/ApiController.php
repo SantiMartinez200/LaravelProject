@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
+  /*
   public function studentCondition($id)
   {
     dd($id);
@@ -32,5 +33,5 @@ class ApiController extends Controller
     }
     return redirect()->route('students.show', ['student'=> $id,'condition' => $condition]);
     //return redirectresponse()->json(['UserCondition' => $condition]);
-    }
+    }*/
 }

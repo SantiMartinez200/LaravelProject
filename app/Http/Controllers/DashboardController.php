@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Param;
+use Carbon\Carbon;
 use App\Models\Student;
 
 
@@ -78,13 +79,34 @@ class DashboardController extends Controller
       return $allAssists;
     }
 
+  public static function birthdays()
+  {
+    $student = Student::all()->toArray();
+    $date = Carbon::now()->format('d-m');
+    $StudentAndBirthday = [];
+    $j = 0;
+    for ($i = 0; $i < count($student); $i++) {
+      $studentBirthday = Carbon::parse($student[$i]['birthday']);
+      $studentDateFormat = $studentBirthday->format('d-m');
+      if ($date == $studentDateFormat) {
+        $studentDateFormat = $studentBirthday->format('d/m');
+        $StudentAndBirthday[$j] = ['name' => $student[$i]['name'], 'last_name' => $student[$i]['last_name'], 'birthday' => $studentDateFormat];
+        $j++;
+      }
+    }
+    return $StudentAndBirthday;
+  }
+
     public function compactData(){
         $promoted = $this->determinePromoted();
         $regularized = $this->determineRegularized();
         $auditor = $this->determineAuditor();
         $total_assists = $this->countAllAssists();
       $results = ['promoted' => $promoted, 'regularized' => $regularized, 'auditor' => $auditor, 'total_assists' => $total_assists];
+      $birthdays = $this->birthdays();
 
-    return view('dashboard.dashboard',compact('results'));
+    return view('dashboard.dashboard',compact('results','birthdays'));
     }
+
+   
 }
