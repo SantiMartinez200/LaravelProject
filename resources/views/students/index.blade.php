@@ -53,7 +53,7 @@
               class="bi bi-eye"></i>Asistencias</a>
 
               <button type="submit" class="btn btn-danger btn-sm"
-              onclick="return confirm('¿Estás seguro de eliminar el Estudiante? Deberás eliminar sus asistencias en el Panel General.');"><i
+              onclick="return confirm('¿Estás seguro de eliminar el Estudiante? Sus asistencias serán eliminadas.');"><i
               class="bi bi-trash"></i>Eliminar</button>
             </form>
             </td>

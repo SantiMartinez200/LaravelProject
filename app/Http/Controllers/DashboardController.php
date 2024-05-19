@@ -31,7 +31,7 @@ class DashboardController extends Controller
     $distinctStudentsAssists = $this->getStudentsAssists();
     $avgRegularized = 0;
     for ($i=0; $i < count($distinctStudentsAssists); $i++) {
-      $calculate = (($distinctStudentsAssists[$i]->assist_count)*($params[0]->total_classes)/100)*100;
+      $calculate = ($distinctStudentsAssists[$i]->assist_count) / ($params[0]->total_classes) * 100;
       if(($calculate >= $params[0]->regular) && ($calculate < $params[0]->promote)){
         $avgRegularized = $avgRegularized + 1;
       }
@@ -47,7 +47,7 @@ class DashboardController extends Controller
     //dd($distinctStudentsAssists[0]->assist_count);
     $avgPromoted = 0;
     for ($i = 0; $i < count($distinctStudentsAssists); $i++) {
-      $calculate = (($distinctStudentsAssists[$i]->assist_count) * ($params[0]->total_classes) / 100) * 100;
+      $calculate = ($distinctStudentsAssists[$i]->assist_count) / ($params[0]->total_classes) * 100;
       if (($calculate >= $params[0]->promote)) {
         $avgPromoted = $avgPromoted + 1;
       }
@@ -62,7 +62,7 @@ class DashboardController extends Controller
     $distinctStudentsAssists = $this->getStudentsAssists();
     $avgAuditor = 0;
     for ($i = 0; $i < count($distinctStudentsAssists); $i++) {
-      $calculate = (($distinctStudentsAssists[$i]->assist_count) * ($params[0]->total_classes) / 100) * 100;
+      $calculate = ($distinctStudentsAssists[$i]->assist_count) / ($params[0]->total_classes) * 100;
       if (($calculate < $params[0]->regular)) {
         $avgAuditor = $avgAuditor + 1;
       }
@@ -71,7 +71,7 @@ class DashboardController extends Controller
   }
 
     public static function countAllAssists(){
-      $allAssists = DB::table('assists')
+    $allAssists = DB::table('assists')
       ->join('students', 'assists.student_id', '=', 'students.id')
       ->select(DB::raw('students.id,students.name,students.last_name,students.dni_student'))
       ->get()

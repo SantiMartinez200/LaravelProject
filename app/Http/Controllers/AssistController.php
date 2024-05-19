@@ -10,16 +10,10 @@ use App\Http\Requests\AssistRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Framework\Constraint\IsEmpty;
+use Illuminate\View\View;
 
 class AssistController extends Controller
 {
-  /*public function store(AssistRequest $request): RedirectResponse
-  {
-    Assist::create($request->all());
-    return redirect()->route('signView')
-      ->withSuccess('Se ha marcado la asistencia del alumno');
-  }                                                                    -> Not currently used.*/
-
   public static function ValidateDate($id)
   {
     $todayDate = Carbon::now()->toDateString();;

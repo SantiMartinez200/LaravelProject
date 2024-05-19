@@ -29,7 +29,7 @@ class StudentStatusController extends Controller
     $distinctStudentsAssists = $this->getStudentsAssists();
     $avgRegularized = [];
     for ($i = 0; $i < count($distinctStudentsAssists); $i++) {
-      $calculate = (($distinctStudentsAssists[$i]->assist_count) * ($params[0]->total_classes) / 100) * 100;
+      $calculate = ($distinctStudentsAssists[$i]->assist_count) / ($params[0]->total_classes) * 100;
       if (($calculate >= $params[0]->regular) && ($calculate < $params[0]->promote)) {
         $avgRegularized[$i] = ['nombre' => $distinctStudentsAssists[$i]->name, 'apellido' => $distinctStudentsAssists[$i]->last_name, 'dni' => $distinctStudentsAssists[$i]->dni_student, 'condicion' => 'Regular', 'cantidad_de_asistencias' => $distinctStudentsAssists[$i]->assist_count];
       }
@@ -44,7 +44,7 @@ class StudentStatusController extends Controller
     $distinctStudentsAssists = $this->getStudentsAssists();
     $avgPromoted = [];
     for ($i = 0; $i < count($distinctStudentsAssists); $i++) {
-      $calculate = (($distinctStudentsAssists[$i]->assist_count) * ($params[0]->total_classes) / 100) * 100;
+      $calculate = ($distinctStudentsAssists[$i]->assist_count) / ($params[0]->total_classes) * 100;
       if (($calculate >= $params[0]->promote)) {
         $avgPromoted[$i] = ['nombre' => $distinctStudentsAssists[$i]->name, 'apellido' => $distinctStudentsAssists[$i]->last_name, 'dni' => $distinctStudentsAssists[$i]->dni_student, 'condicion' => 'Promocion', 'cantidad_de_asistencias' => $distinctStudentsAssists[$i]->assist_count];
       }
@@ -60,7 +60,7 @@ class StudentStatusController extends Controller
     $distinctStudentsAssists = $this->getStudentsAssists();
     $avgAuditor = [];
     for ($i = 0; $i < count($distinctStudentsAssists); $i++) {
-      $calculate = (($distinctStudentsAssists[$i]->assist_count) * ($params[0]->total_classes) / 100) * 100;
+      $calculate = ($distinctStudentsAssists[$i]->assist_count) / ($params[0]->total_classes) * 100;
       if (($calculate < $params[0]->regular)) {
         $avgAuditor[$i] = ['nombre' => $distinctStudentsAssists[$i]->name, 'apellido' => $distinctStudentsAssists[$i]->last_name, 'dni' => $distinctStudentsAssists[$i]->dni_student, 'condicion' => 'Libre', 'cantidad_de_asistencias' => $distinctStudentsAssists[$i]->assist_count];
       }

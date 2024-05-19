@@ -27,10 +27,6 @@ Route::get('/register', function () {
   return view('register');
 });
 
-/*  Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');*/
-
 Route::middleware('auth')->group(function () {
   Route::get('/dashboard', [DashboardController::class, 'compactData'])->name('/dashboard');
 

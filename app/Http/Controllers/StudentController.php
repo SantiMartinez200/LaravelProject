@@ -45,7 +45,7 @@ class StudentController extends Controller
     }else{
       Student::create($request->all());
       return redirect()->route('students.index')
-        ->withSuccess('New student was added successfully.');
+        ->withSuccess('Se ha añadido un nuevo estudiante correctamente.');
     }
   }
 
@@ -63,7 +63,7 @@ class StudentController extends Controller
     $val = $getAllAssists[0]->assist_count;
     //get params and calculate student status
     $params = Param::all();
-    $calculate = ($val * ($params[0]->total_classes) / 100) * 100;
+    $calculate = ($val) / ($params[0]->total_classes) * 100;
     $status = 'undefined';
     if ($val > 0) {
       if ($calculate >= $params[0]->promote) {
@@ -108,7 +108,7 @@ class StudentController extends Controller
     } else {
       $student->update($request->all());
       return redirect()->back()
-        ->withSuccess('Student was updated successfully.');
+        ->withSuccess('El estudiante se actualizó correctamente.');
     }
     
   }
@@ -118,9 +118,12 @@ class StudentController extends Controller
    */
   public function destroy(Student $student): RedirectResponse
   {
+    $deleteAssists = DB::table('assists')
+      ->where('student_id', '=', $student->id)
+      ->delete();
     $student->delete();
     return redirect()->route('students.index')
-      ->withSuccess('Student was deleted successfully.');
+      ->withSuccess('El estudiante se eliminó correctamente.');
   }
 
   public function find($id)

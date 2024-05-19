@@ -13,14 +13,12 @@
     @foreach($birthdays as $eachStudent)
     <p class="text-bold ml-5 h4 m-2"><strong>{{$eachStudent["last_name"]}}, {{$eachStudent["name"]}}</strong></p>
   @endforeach
-
     </div>
     </div>
     </div>
   </div>
 @endif
 @endif
-
 
   <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
